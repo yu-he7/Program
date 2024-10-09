@@ -1,0 +1,92 @@
+#include <iostream>
+
+
+using namespace std;
+
+char arrayList[1000];
+int cnt = 0;
+void Push(char a[1]) {
+    arrayList[cnt] = a[0];
+    cnt++;
+}
+void Pop() {
+    arrayList[0] = '0';
+    for (int i = 0; i < cnt+1;i++) {
+        char tmp[1];
+        tmp[0] = arrayList[i];
+        arrayList[i] = arrayList[i + 1];
+        arrayList[i+1] = tmp[0];
+    }
+    cnt--;
+}
+
+int main() {
+    int n = 0;
+    while(n != 4) {
+        cout << "********** Queue Program **********\n";
+        cout << "1. Insert item to Queue\n";
+        cout << "2. Delete item from Queue\n";
+        cout << "3. Print Queue\n";
+        cout << "4. Exit\n";
+        cout << "\n\n";
+        cout << "Enter menu : ";
+        cin >> n;
+        if (n == 1) {
+            char str[1];
+            cout << "# Enter item to insert : ";
+            cin >> str;
+            Push(str);
+            cout << "#'" << arrayList[0] << "' is inserted.\n";
+            cout << "# State of Queue : ";
+            cout << "[";
+            for (int i = 0; i < cnt; i++) {
+                if (i != cnt - 1) {
+                    cout << "'" << arrayList[i] << "', ";
+                }
+                else {
+                    cout << "'" << arrayList[i] << "']\n\n\n";
+                }
+
+            }
+
+        }
+        else if (n == 2) {
+            if (cnt == 0) {
+                cout << "# Nothing to delete in queue.\n\n";
+            }
+            else {
+                cout << "# First item '" << arrayList[0] << "' was removed.\n";
+                Pop();
+                cout << "# State of Queue : ";
+                cout << "[";
+                for (int i = 0; i < cnt; i++) {
+                    if (i != cnt - 1) {
+                        cout << "'" << arrayList[i] << "', ";
+                    }
+                    else {
+                        cout << "'" << arrayList[i] << "']\n\n\n";
+                    }
+                }
+            }
+        }
+        else if (n == 3) {
+            if (cnt == 0) {
+                cout << "# Nothing to delete in queue.\n\n";
+            }
+            else {
+                cout << "# State of Queue : ";
+                cout << "[";
+                for (int i = 0; i < cnt; i++) {
+                    if (i != cnt - 1) {
+                        cout << "'" << arrayList[i] << "', ";
+                    }
+                    else {
+                        cout << "'" << arrayList[i] << "']\n\n\n";
+                    }
+                }
+            }
+            
+        }
+    } 
+    return 0;
+}
