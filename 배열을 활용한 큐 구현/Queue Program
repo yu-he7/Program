@@ -1,0 +1,92 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string Array[1000];
+int cnt = 0;
+void One(string a) {
+    cout << "#'" << a << "' is inserted.\n";
+    cout << "# State of Queue : ";
+    cout << "[";
+    for (int i = 0; i < cnt; i++) {
+        if (i != cnt - 1) {
+            cout << "'" << Array[i] << "', ";
+        }
+        else {
+            cout << "'" << Array[i] << "']\n\n\n";
+        }
+        
+    }
+}
+void Two() {
+    cout << "# First item '" << Array[0] << "' was removed.";
+    Array[0] = "0";
+    for (int i = 0; i < cnt+1;i++) {
+        string tmp = Array[i];
+        Array[i] = Array[i + 1];
+        Array[i+1] = tmp;
+    }
+    cnt--;
+    cout << "# State of Queue : ";
+    cout << "[";
+    for (int i = 0; i < cnt; i++) {
+        if (i != cnt - 1) {
+            cout << "'" << Array[i] << "', ";
+        }
+        else {
+            cout << "'" << Array[i] << "']\n\n\n";
+        }
+    }
+}
+void Three() {
+    cout << "# State of Queue : ";
+    cout << "[";
+    for (int i = 0; i < cnt; i++) {
+        if (i != cnt - 1) {
+            cout << "'" << Array[i] << "', ";
+        }
+        else {
+            cout << "'" << Array[i] << "']\n\n\n";
+        }
+    }
+}
+
+int main() {
+    int n = 0;
+    while(n != 4) {
+        cout << "********** Queue Program **********\n";
+        cout << "1. Insert item to Queue\n";
+        cout << "2. Delete item from Queue\n";
+        cout << "3. Print Queue\n";
+        cout << "4. Exit\n";
+        cout << "\n\n";
+        cout << "Enter menu : ";
+        cin >> n;
+        if (n == 1) {
+            string str;
+            cout << "# Enter item to insert : ";
+            cin >> str;
+            Array[cnt] = str;
+            cnt++;
+            One(str);
+        }
+        else if (n == 2) {
+            if (cnt == 0) {
+                cout << "# Nothing to delete in queue.";
+            }
+            else {
+                Two();
+            }
+        }
+        else if (n == 3) {
+            if (cnt == 0) {
+                cout << "# Nothing to delete in queue.";
+            }
+            else {
+                Three();
+            }
+        }
+    } 
+    return 0;
+}
