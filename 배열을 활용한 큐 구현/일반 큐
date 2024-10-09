@@ -36,7 +36,7 @@ int main() {
             cout << "# Enter item to insert : ";
             cin >> str;
             Push(str);
-            cout << "#'" << arrayList[0] << "' is inserted.\n";
+            cout << "#'" << str << "' is inserted.\n";
             cout << "# State of Queue : ";
             cout << "[";
             for (int i = 0; i < cnt; i++) {
