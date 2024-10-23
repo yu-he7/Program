@@ -1,9 +1,6 @@
 #include <iostream>
-
 #define SIZE 10
-
 using namespace std;
-
 
 int front = 0;
 int end = 0;
@@ -25,13 +22,10 @@ int empty() {
     if (::end == front) return 1;
     else return 0;
 }
-
 void print_queue(char arr[]) {
     int range = (SIZE + (::end - front)) % SIZE;
-    cout << "f " << front << " e " << ::end << " range " << range << endl;
     cout << "# State of Queue : ";
     cout << "[";
-   
     for (int i = front; i < range + front;) {
 		if (i != range+front - 1) {
 			cout << "'" << arr[i] << "', ";
@@ -48,7 +42,6 @@ void print_queue(char arr[]) {
     else {
         cout << "']\n\n\n";
     }
-
 }
 
 int main() {
@@ -63,6 +56,7 @@ int main() {
         cout << "\n\n";
         cout << "Enter menu : ";
         cin >> n;
+	    
         if (n == 1) {
             char str;
             cout << "# Enter item to insert : ";
@@ -79,8 +73,6 @@ int main() {
             else {
                 cout << "# First item '" << Pop_(arrayList) << "' was removed.\n";
                 print_queue(arrayList);
-                
-
             }
         }
         else if (n == 3) {
