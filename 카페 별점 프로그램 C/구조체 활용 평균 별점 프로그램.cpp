@@ -85,6 +85,8 @@ int main() {
                 if (a[i].name == store) {
                     a[i].name = "";
                     a[i].score = 0;
+                    a[i].count = 0;
+                    a[i].sum = 0;
                     cout << "Delete is completed.\n\n";
                 }
             }
