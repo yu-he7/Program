@@ -1,0 +1,96 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+
+unordered_map <string, int> cafeMenu;
+unordered_map <string, int> cupCounts;
+
+void menu() {
+    cout << "[Cafe Menu]\n";
+    cout << " Americano 1800won\n";
+    cout << " Cafe latte 2200won\n";
+    cout << " Cafe Mocha 2800won\n";
+}
+
+void Plus(string str, int cup) {
+    int sum = cupCounts[str]+cup;
+    cupCounts[str] = sum;
+}
+void print() {
+    for (pair<string, int> c : cupCounts) {
+        if (c.second > 0) {
+            cout << c.first << "            " << c.second << " cups\n";
+       }
+    }
+}
+
+int total() {
+    int total = 0;
+    for (pair<string, int>c : cupCounts) {
+        int price = cafeMenu[c.first] * c.second;
+        total += price;
+    }
+    return total;
+}
+    
+int main() {
+    int n = 0;  
+    cafeMenu.insert(make_pair("Americano", 1800));
+    cafeMenu.insert(make_pair("Cafe latte", 2200));
+    cafeMenu.insert(make_pair("Cafe Mocha", 2800));
+    cupCounts.insert(make_pair("Americano", 0));
+    cupCounts.insert(make_pair("Cafe latte", 0));
+    cupCounts.insert(make_pair("Cafe Mocha", 0));
+    int calc = 0;
+    while (n != 4) {
+        cout << "1. Select coffee menu\n";
+        cout << "2. Check your order\n";
+        cout << "3. Pay total price\n";
+        cout << "4. Get change\n";
+        cin >> n;
+        if (n == 1) {
+            menu();
+            string coffe;
+            while (1) {
+                cin >> coffe;
+                if (cafeMenu.count(coffe)) break;
+                else cout << "you selected wrong menu\n";
+            }
+            cout << "Select Menu : " << coffe << "\n";
+            cout << "How many cups ? ";
+            int cups;
+            cin >> cups;
+            Plus(coffe, cups);
+        }
+        else if (n == 2) {
+            print();
+        }
+        else if (n == 3) {
+            int price = total();
+            cout << "Total Price :  " << price << "\n";
+            int payMoney = 0;
+            while (1) {
+                cout << "Pay money : ";
+                cin >> payMoney;
+                if (price > payMoney) {
+                    cout << "Too small..\n\n";
+                }
+                else break;
+            }
+            calc = payMoney - price;
+        }
+    }
+    cout << "Your change is " << calc << " won.\n";
+    cout << "==========================================\n";
+    int num[4] = { 5000,1000,500,100 };
+    int cnt[4] = { 0,0,0,0 };
+    for (int i = 0; i < 4; i++) {
+        cnt[i] = calc / num[i];
+        calc = calc % num[i];
+    }
+    for (int i = 0; i < 4;i++) {
+        cout << num[i] << " won :  " << cnt[i] << "\n";
+    }
+    cout << "\nThank you for using our machine";
+    return 0;
+}
